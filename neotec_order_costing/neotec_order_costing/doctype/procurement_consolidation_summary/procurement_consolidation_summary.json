@@ -1,0 +1,113 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-08-10 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "brand",
+  "item_code",
+  "total_qty",
+  "order_count",
+  "supplier",
+  "target_rate",
+  "last_purchase_rate",
+  "expected_saving",
+  "uom",
+  "earliest_required_by"
+ ],
+ "fields": [
+  {
+   "fieldname": "brand",
+   "label": "Brand",
+   "fieldtype": "Link",
+   "options": "Brand",
+   "read_only": 1,
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "item_code",
+   "label": "Item",
+   "fieldtype": "Link",
+   "options": "Item",
+   "read_only": 1,
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "total_qty",
+   "label": "Consolidated Qty",
+   "fieldtype": "Float",
+   "read_only": 1,
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "order_count",
+   "label": "Orders",
+   "fieldtype": "Int",
+   "read_only": 1,
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "supplier",
+   "label": "Supplier",
+   "fieldtype": "Link",
+   "options": "Supplier",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "target_rate",
+   "label": "Target Rate",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "last_purchase_rate",
+   "label": "Last Rate",
+   "fieldtype": "Currency",
+   "read_only": 1,
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "expected_saving",
+   "label": "Expected Saving",
+   "fieldtype": "Currency",
+   "read_only": 1,
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "uom",
+   "label": "UOM",
+   "fieldtype": "Link",
+   "options": "UOM",
+   "read_only": 1
+  },
+  {
+   "fieldname": "earliest_required_by",
+   "label": "Earliest Required By",
+   "fieldtype": "Date",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-08-10 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Neotec Order Costing",
+ "name": "Procurement Consolidation Summary",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "istable": 1,
+ "editable_grid": 1
+}

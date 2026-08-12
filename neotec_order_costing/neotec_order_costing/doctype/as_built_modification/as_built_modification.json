@@ -1,0 +1,77 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-08-05 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "addon_item",
+  "addon_qty",
+  "attribute",
+  "modification_mode",
+  "previous_value",
+  "new_value"
+ ],
+ "fields": [
+  {
+   "fieldname": "addon_item",
+   "label": "Add-on Part Number",
+   "fieldtype": "Link",
+   "options": "Item",
+   "in_list_view": 1,
+   "columns": 3
+  },
+  {
+   "fieldname": "addon_qty",
+   "label": "Qty",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "attribute",
+   "label": "Attribute Modified",
+   "fieldtype": "Link",
+   "options": "Specification Attribute",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "modification_mode",
+   "label": "Mode",
+   "fieldtype": "Select",
+   "options": "Replace\nAdd\nAppend\nRemove",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "previous_value",
+   "label": "Ordered Value",
+   "fieldtype": "Data",
+   "read_only": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "new_value",
+   "label": "Delivered Value",
+   "fieldtype": "Data",
+   "read_only": 1,
+   "in_list_view": 1,
+   "columns": 2
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-08-05 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Neotec Order Costing",
+ "name": "As Built Modification",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "istable": 1,
+ "editable_grid": 1
+}

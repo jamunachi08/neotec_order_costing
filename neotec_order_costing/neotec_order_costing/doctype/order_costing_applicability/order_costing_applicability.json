@@ -1,0 +1,80 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-08-04 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "company",
+  "item_group",
+  "brand",
+  "customer_group",
+  "costing_mode",
+  "enabled"
+ ],
+ "fields": [
+  {
+   "fieldname": "company",
+   "label": "Company",
+   "fieldtype": "Link",
+   "options": "Company",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "item_group",
+   "label": "Item Group",
+   "fieldtype": "Link",
+   "options": "Item Group",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "brand",
+   "label": "Brand",
+   "fieldtype": "Link",
+   "options": "Brand",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "customer_group",
+   "label": "Customer Group",
+   "fieldtype": "Link",
+   "options": "Customer Group",
+   "columns": 2
+  },
+  {
+   "fieldname": "costing_mode",
+   "label": "Costing Mode",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "columns": 2,
+   "options": "Follow Global\nPegged Batch Valuation\nPegged PO Rate\nDefault Valuation",
+   "default": "Follow Global",
+   "reqd": 1
+  },
+  {
+   "fieldname": "enabled",
+   "label": "Enabled",
+   "fieldtype": "Check",
+   "default": "1",
+   "in_list_view": 1,
+   "columns": 1
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-08-04 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Neotec Order Costing",
+ "name": "Order Costing Applicability",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "istable": 1,
+ "editable_grid": 1
+}

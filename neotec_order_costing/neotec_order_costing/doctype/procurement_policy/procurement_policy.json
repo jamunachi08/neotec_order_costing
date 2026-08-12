@@ -1,0 +1,104 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-08-10 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "priority",
+  "company",
+  "brand",
+  "item_group",
+  "supplier",
+  "min_amount",
+  "required_path",
+  "min_quotations",
+  "enabled"
+ ],
+ "fields": [
+  {
+   "fieldname": "priority",
+   "label": "Priority",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "columns": 1,
+   "description": "Lower runs first"
+  },
+  {
+   "fieldname": "company",
+   "label": "Company",
+   "fieldtype": "Link",
+   "options": "Company",
+   "columns": 1
+  },
+  {
+   "fieldname": "brand",
+   "label": "Brand",
+   "fieldtype": "Link",
+   "options": "Brand",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "item_group",
+   "label": "Item Group",
+   "fieldtype": "Link",
+   "options": "Item Group",
+   "columns": 1
+  },
+  {
+   "fieldname": "supplier",
+   "label": "Supplier",
+   "fieldtype": "Link",
+   "options": "Supplier",
+   "columns": 1
+  },
+  {
+   "fieldname": "min_amount",
+   "label": "Amount Above",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "required_path",
+   "label": "Required Path",
+   "fieldtype": "Select",
+   "options": "Direct Purchase Order\nSupplier Quotation then Purchase Order\nRequest for Quotation then Purchase Order",
+   "default": "Direct Purchase Order",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 3
+  },
+  {
+   "fieldname": "min_quotations",
+   "label": "Min Quotations",
+   "fieldtype": "Int",
+   "default": "1",
+   "columns": 1,
+   "depends_on": "eval:doc.required_path.indexOf('Request for Quotation')===0"
+  },
+  {
+   "fieldname": "enabled",
+   "label": "On",
+   "fieldtype": "Check",
+   "default": "1",
+   "in_list_view": 1,
+   "columns": 1
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-08-10 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Neotec Order Costing",
+ "name": "Procurement Policy",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "istable": 1,
+ "editable_grid": 1
+}

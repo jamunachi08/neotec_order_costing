@@ -1,0 +1,79 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-08-11 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "istable": 1,
+ "modified": "2026-08-11 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Neotec Order Costing",
+ "name": "Cost Visibility Field",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 0,
+ "fields": [
+  {
+   "fieldname": "peg_fieldname",
+   "label": "Field on Order Cost Peg",
+   "fieldtype": "Select",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 3,
+   "options": "effective_cost_rate\npurchase_rate\nreceived_rate\nlanded_rate\nquoted_rate\nexpected_margin\nsupplier\npurchase_order\nbatch_no\nstatus\ncosting_mode_applied\nqty_allocated\nmanufacturer_part_no\nsupplier_part_no\nprocurement_consolidation"
+  },
+  {
+   "fieldname": "target_doctype",
+   "label": "Copy To",
+   "fieldtype": "Select",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 3,
+   "options": "Quotation Item\nSales Order Item\nDelivery Note Item\nSales Invoice Item"
+  },
+  {
+   "fieldname": "target_fieldname",
+   "label": "Target Field",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 3,
+   "description": "Custom field name on the target row, created automatically if absent."
+  },
+  {
+   "fieldname": "target_fieldtype",
+   "label": "Type",
+   "fieldtype": "Select",
+   "options": "Currency\nData\nFloat\nInt\nLink\nSelect\nCheck\nDate",
+   "default": "Currency",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "target_options",
+   "label": "Link To",
+   "fieldtype": "Data",
+   "columns": 2
+  },
+  {
+   "fieldname": "enabled",
+   "label": "On",
+   "fieldtype": "Check",
+   "default": "1",
+   "in_list_view": 1,
+   "columns": 1
+  }
+ ],
+ "field_order": [
+  "peg_fieldname",
+  "target_doctype",
+  "target_fieldname",
+  "target_fieldtype",
+  "target_options",
+  "enabled"
+ ]
+}

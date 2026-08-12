@@ -1,0 +1,178 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-08-05 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "attribute_name",
+  "label_en",
+  "label_ar",
+  "cb1",
+  "attribute_group",
+  "uom",
+  "datatype",
+  "options",
+  "behaviour_section",
+  "show_to_customer",
+  "display_order",
+  "cb2",
+  "is_numeric_aggregatable",
+  "is_key_spec"
+ ],
+ "fields": [
+  {
+   "fieldname": "attribute_name",
+   "label": "Attribute Name",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "label_en",
+   "label": "Label (English)",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "label_ar",
+   "label": "Label (Arabic)",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "translatable": 1
+  },
+  {
+   "fieldname": "cb1",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "attribute_group",
+   "label": "Group",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "description": "Used to band attributes on the spec sheet, e.g. Performance, Display, Connectivity."
+  },
+  {
+   "fieldname": "uom",
+   "label": "UOM",
+   "fieldtype": "Link",
+   "options": "UOM"
+  },
+  {
+   "fieldname": "datatype",
+   "label": "Value Type",
+   "fieldtype": "Select",
+   "options": "Data\nFloat\nInt\nSelect\nCheck\nSmall Text",
+   "default": "Data",
+   "reqd": 1
+  },
+  {
+   "fieldname": "options",
+   "label": "Select Options",
+   "fieldtype": "Small Text",
+   "depends_on": "eval:doc.datatype=='Select'"
+  },
+  {
+   "fieldname": "behaviour_section",
+   "label": "Behaviour",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "show_to_customer",
+   "label": "Show to Customer by Default",
+   "fieldtype": "Check",
+   "default": "1"
+  },
+  {
+   "fieldname": "display_order",
+   "label": "Default Display Order",
+   "fieldtype": "Int",
+   "default": "0"
+  },
+  {
+   "fieldname": "cb2",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "is_numeric_aggregatable",
+   "label": "Numeric and Aggregatable",
+   "fieldtype": "Check",
+   "default": "0",
+   "description": "Allows add-on items to add to this attribute, e.g. 8GB base plus a 16GB module gives 24GB."
+  },
+  {
+   "fieldname": "is_key_spec",
+   "label": "Key Specification",
+   "fieldtype": "Check",
+   "default": "0",
+   "description": "Key specs appear in the compact spec block on quotations and invoices."
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-08-05 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Neotec Order Costing",
+ "name": "Specification Attribute",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "share": 1,
+   "print": 1,
+   "email": 1
+  },
+  {
+   "role": "Stock Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1
+  },
+  {
+   "role": "Item Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1
+  },
+  {
+   "role": "Sales Manager",
+   "read": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1
+  },
+  {
+   "role": "Purchase Manager",
+   "read": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "autoname": "field:attribute_name",
+ "title_field": "label_en"
+}

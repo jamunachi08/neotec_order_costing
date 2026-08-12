@@ -1,0 +1,158 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-08-05 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "template_name",
+  "applies_to",
+  "cb1",
+  "item_group",
+  "brand",
+  "enabled",
+  "rules_section",
+  "enforce_mandatory",
+  "auto_apply_on_item_insert",
+  "attributes_section",
+  "attributes"
+ ],
+ "fields": [
+  {
+   "fieldname": "template_name",
+   "label": "Template Name",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "applies_to",
+   "label": "Applies To",
+   "fieldtype": "Select",
+   "options": "Item Group\nBrand\nItem Group and Brand\nAll Items",
+   "default": "Item Group",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "cb1",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "item_group",
+   "label": "Item Group",
+   "fieldtype": "Link",
+   "options": "Item Group",
+   "depends_on": "eval:['Item Group','Item Group and Brand'].includes(doc.applies_to)"
+  },
+  {
+   "fieldname": "brand",
+   "label": "Brand",
+   "fieldtype": "Link",
+   "options": "Brand",
+   "depends_on": "eval:['Brand','Item Group and Brand'].includes(doc.applies_to)"
+  },
+  {
+   "fieldname": "enabled",
+   "label": "Enabled",
+   "fieldtype": "Check",
+   "default": "1",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "rules_section",
+   "label": "Rules",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "enforce_mandatory",
+   "label": "Block Save if Mandatory Specs Missing",
+   "fieldtype": "Check",
+   "default": "0",
+   "description": "Stops a part number being created half-specified."
+  },
+  {
+   "fieldname": "auto_apply_on_item_insert",
+   "label": "Apply Automatically to New Items",
+   "fieldtype": "Check",
+   "default": "1"
+  },
+  {
+   "fieldname": "attributes_section",
+   "label": "Attributes",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "attributes",
+   "label": "Attributes",
+   "fieldtype": "Table",
+   "options": "Specification Template Attribute",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-08-05 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Neotec Order Costing",
+ "name": "Specification Template",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "share": 1,
+   "print": 1,
+   "email": 1
+  },
+  {
+   "role": "Stock Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1
+  },
+  {
+   "role": "Item Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1
+  },
+  {
+   "role": "Sales Manager",
+   "read": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1
+  },
+  {
+   "role": "Purchase Manager",
+   "read": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "autoname": "field:template_name",
+ "title_field": "template_name"
+}

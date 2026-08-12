@@ -1,0 +1,83 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-08-04 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "delivery_document_type",
+  "delivery_document",
+  "delivery_detail",
+  "batch_no",
+  "qty",
+  "cost_rate",
+  "posting_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "delivery_document_type",
+   "label": "Document Type",
+   "fieldtype": "Select",
+   "options": "Delivery Note\nSales Invoice",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "delivery_document",
+   "label": "Document",
+   "fieldtype": "Dynamic Link",
+   "options": "delivery_document_type",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "delivery_detail",
+   "label": "Row Name",
+   "fieldtype": "Data",
+   "read_only": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "batch_no",
+   "label": "Batch",
+   "fieldtype": "Link",
+   "options": "Batch",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "qty",
+   "label": "Qty",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "cost_rate",
+   "label": "Cost Rate",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "posting_date",
+   "label": "Posting Date",
+   "fieldtype": "Date",
+   "columns": 1
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-08-04 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Neotec Order Costing",
+ "name": "Order Cost Peg Delivery",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "istable": 1,
+ "editable_grid": 1
+}

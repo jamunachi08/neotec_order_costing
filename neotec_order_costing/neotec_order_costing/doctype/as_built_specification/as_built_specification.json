@@ -1,0 +1,104 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-08-05 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "attribute",
+  "label_en",
+  "label_ar",
+  "value_en",
+  "value_ar",
+  "base_value",
+  "uom",
+  "is_modified",
+  "display_order",
+  "show_to_customer"
+ ],
+ "fields": [
+  {
+   "fieldname": "attribute",
+   "label": "Attribute",
+   "fieldtype": "Link",
+   "options": "Specification Attribute",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "label_en",
+   "label": "Label",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "label_ar",
+   "label": "Label (AR)",
+   "fieldtype": "Data",
+   "columns": 2
+  },
+  {
+   "fieldname": "value_en",
+   "label": "Delivered Value",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "value_ar",
+   "label": "Delivered Value (AR)",
+   "fieldtype": "Data",
+   "columns": 2
+  },
+  {
+   "fieldname": "base_value",
+   "label": "Ordered Value",
+   "fieldtype": "Data",
+   "read_only": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "uom",
+   "label": "UOM",
+   "fieldtype": "Link",
+   "options": "UOM",
+   "columns": 1
+  },
+  {
+   "fieldname": "is_modified",
+   "label": "Modified",
+   "fieldtype": "Check",
+   "read_only": 1,
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "display_order",
+   "label": "Order",
+   "fieldtype": "Int",
+   "columns": 1
+  },
+  {
+   "fieldname": "show_to_customer",
+   "label": "Show",
+   "fieldtype": "Check",
+   "default": "1",
+   "columns": 1
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-08-05 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Neotec Order Costing",
+ "name": "As Built Specification",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "istable": 1,
+ "editable_grid": 1
+}
