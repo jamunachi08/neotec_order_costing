@@ -1,0 +1,689 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-08-04 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "master_section",
+  "enable_order_wise_cogs",
+  "costing_mode",
+  "cb_master",
+  "shortfall_behaviour",
+  "allow_manual_batch_override",
+  "flow_section",
+  "procurement_flow",
+  "require_purchase_receipt",
+  "cb_flow",
+  "force_update_stock_on_pi",
+  "require_material_request",
+  "batch_section",
+  "enable_auto_batch",
+  "auto_batch_applies_to",
+  "batch_separator",
+  "skip_if_batch_supplied",
+  "batch_naming_components",
+  "batch_preview",
+  "set_batch_expiry_from_item",
+  "split_section",
+  "enable_procurement_split",
+  "split_basis",
+  "cb_split",
+  "split_target",
+  "block_mixed_brand_po",
+  "carry_sales_order_link",
+  "visibility_section",
+  "enable_cost_visibility",
+  "cost_visibility_source",
+  "cb_vis",
+  "cost_visibility_overwrite",
+  "show_margin_on_sales_rows",
+  "vis_fields_section",
+  "cost_visibility_fields",
+  "consol_section",
+  "enable_consolidation",
+  "consolidation_group_by",
+  "allocation_method",
+  "cb_consol",
+  "batch_identity",
+  "block_partial_allocation",
+  "policy_section",
+  "enable_procurement_policy",
+  "default_procurement_path",
+  "cb_policy",
+  "enforce_procurement_policy",
+  "procurement_policies",
+  "addon_section",
+  "enable_addon_handling",
+  "addon_item_groups",
+  "cb_addon",
+  "addon_costing",
+  "addon_attribution",
+  "variance_section",
+  "post_cost_variance",
+  "cost_variance_account",
+  "cb_var",
+  "variance_cost_center",
+  "spec_section",
+  "enable_specifications",
+  "spec_language",
+  "show_key_specs_on_invoice",
+  "cb_spec",
+  "enforce_spec_template",
+  "enable_as_built_configuration",
+  "supplier_resolution",
+  "subst_section",
+  "allow_superseded_substitution",
+  "cb_subst",
+  "log_substitutions",
+  "report_section",
+  "default_report_profile",
+  "cb_rep",
+  "include_draft_documents",
+  "cleanup_section",
+  "allow_destructive_cleanup",
+  "cb_clean",
+  "cleanup_warning",
+  "scope_section",
+  "applicability"
+ ],
+ "fields": [
+  {
+   "fieldname": "master_section",
+   "label": "Master Switch",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "enable_order_wise_cogs",
+   "label": "Enable Order-wise COGS",
+   "fieldtype": "Check",
+   "default": "0",
+   "description": "Off = stock ledger behaves exactly like stock the ERP platform. Nothing in this app touches valuation."
+  },
+  {
+   "fieldname": "costing_mode",
+   "label": "Costing Mode",
+   "fieldtype": "Select",
+   "options": "Pegged Batch Valuation\nPegged PO Rate\nDefault Valuation",
+   "default": "Pegged Batch Valuation",
+   "depends_on": "enable_order_wise_cogs",
+   "description": "Pegged Batch Valuation is the recommended mode. It uses the ERP platform's own batch valuation so the GL always reconciles."
+  },
+  {
+   "fieldname": "cb_master",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "shortfall_behaviour",
+   "label": "If Pegged Batch Is Short",
+   "fieldtype": "Select",
+   "options": "Block Delivery\nFallback to Default Valuation with Warning\nAllow and Flag Variance",
+   "default": "Fallback to Default Valuation with Warning",
+   "depends_on": "enable_order_wise_cogs"
+  },
+  {
+   "fieldname": "allow_manual_batch_override",
+   "label": "Allow Manual Batch Override",
+   "fieldtype": "Check",
+   "default": "1",
+   "depends_on": "enable_order_wise_cogs",
+   "description": "Let users change the auto-selected batch on the Delivery Note."
+  },
+  {
+   "fieldname": "flow_section",
+   "label": "Procurement Document Flow",
+   "fieldtype": "Section Break",
+   "description": "Some clients raise a Purchase Receipt then a Purchase Invoice. Others skip the receipt and post a single Purchase Invoice with Update Stock, which hits payables and inventory together. Both are supported."
+  },
+  {
+   "fieldname": "procurement_flow",
+   "label": "Inward Flow",
+   "fieldtype": "Select",
+   "options": "Auto Detect\nPurchase Receipt then Purchase Invoice\nPurchase Invoice with Update Stock",
+   "default": "Auto Detect",
+   "reqd": 1
+  },
+  {
+   "fieldname": "require_purchase_receipt",
+   "label": "Enforce Purchase Receipt",
+   "fieldtype": "Check",
+   "default": "0",
+   "depends_on": "eval:doc.procurement_flow=='Purchase Receipt then Purchase Invoice'",
+   "description": "Block Purchase Invoices raised directly against a Purchase Order without a receipt."
+  },
+  {
+   "fieldname": "cb_flow",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "force_update_stock_on_pi",
+   "label": "Default Update Stock on Purchase Invoice",
+   "fieldtype": "Check",
+   "default": "0",
+   "depends_on": "eval:doc.procurement_flow=='Purchase Invoice with Update Stock'"
+  },
+  {
+   "fieldname": "require_material_request",
+   "label": "Require Material Request Before PO",
+   "fieldtype": "Check",
+   "default": "0"
+  },
+  {
+   "fieldname": "batch_section",
+   "label": "Automatic Batch Creation",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "enable_auto_batch",
+   "label": "Enable Auto Batch Creation",
+   "fieldtype": "Check",
+   "default": "0"
+  },
+  {
+   "fieldname": "auto_batch_applies_to",
+   "label": "Create Batch On",
+   "fieldtype": "Select",
+   "options": "Stock Inward Document",
+   "default": "Stock Inward Document",
+   "depends_on": "enable_auto_batch",
+   "description": "Batches are created on the Purchase Receipt, or on the Purchase Invoice when Update Stock is ticked. The sales order number still appears in the batch ID through the naming composition below."
+  },
+  {
+   "fieldname": "batch_separator",
+   "label": "Separator",
+   "fieldtype": "Data",
+   "default": "-",
+   "depends_on": "enable_auto_batch"
+  },
+  {
+   "fieldname": "skip_if_batch_supplied",
+   "label": "Skip If Batch Already Entered",
+   "fieldtype": "Check",
+   "default": "1",
+   "depends_on": "enable_auto_batch"
+  },
+  {
+   "fieldname": "batch_naming_components",
+   "label": "Batch ID Composition",
+   "fieldtype": "Table",
+   "options": "Batch Naming Component",
+   "depends_on": "enable_auto_batch",
+   "description": "Rows are concatenated in order using the separator above. Example: BT - HPLAP - 0012 - 001"
+  },
+  {
+   "fieldname": "batch_preview",
+   "label": "Sample Batch ID",
+   "fieldtype": "Data",
+   "read_only": 1,
+   "depends_on": "enable_auto_batch"
+  },
+  {
+   "fieldname": "set_batch_expiry_from_item",
+   "label": "Set Expiry From Item Shelf Life",
+   "fieldtype": "Check",
+   "default": "1",
+   "depends_on": "enable_auto_batch"
+  },
+  {
+   "fieldname": "split_section",
+   "label": "Brand-wise Procurement Split",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "enable_procurement_split",
+   "label": "Enable Split",
+   "fieldtype": "Check",
+   "default": "0",
+   "description": "One Sales Order carrying several brands produces one Material Request / Purchase Order per brand."
+  },
+  {
+   "fieldname": "split_basis",
+   "label": "Split By",
+   "fieldtype": "Select",
+   "options": "Brand\nSupplier\nBrand and Supplier\nItem Group\nDefault Supplier of Item",
+   "default": "Brand",
+   "depends_on": "enable_procurement_split"
+  },
+  {
+   "fieldname": "cb_split",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "split_target",
+   "label": "Split Applies To",
+   "fieldtype": "Select",
+   "options": "Material Request and Purchase Order\nPurchase Order Only\nMaterial Request Only",
+   "default": "Material Request and Purchase Order",
+   "depends_on": "enable_procurement_split"
+  },
+  {
+   "fieldname": "block_mixed_brand_po",
+   "label": "Block Mixed-Brand Purchase Order",
+   "fieldtype": "Check",
+   "default": "0",
+   "depends_on": "enable_procurement_split"
+  },
+  {
+   "fieldname": "carry_sales_order_link",
+   "label": "Carry Sales Order Link Down",
+   "fieldtype": "Check",
+   "default": "1",
+   "depends_on": "enable_procurement_split"
+  },
+  {
+   "fieldname": "visibility_section",
+   "label": "Purchase Cost Visibility",
+   "fieldtype": "Section Break",
+   "description": "Copies the pegged purchase rate onto sales documents so margin is visible everywhere. This never changes the stock ledger, so it can run with Enable Order-wise COGS switched off."
+  },
+  {
+   "fieldname": "enable_cost_visibility",
+   "label": "Enable Cost Visibility",
+   "fieldtype": "Check",
+   "default": "0"
+  },
+  {
+   "fieldname": "cost_visibility_source",
+   "label": "Cost Rate To Show",
+   "fieldtype": "Select",
+   "options": "effective_cost_rate\npurchase_rate\nreceived_rate\nlanded_rate\nquoted_rate",
+   "default": "effective_cost_rate",
+   "depends_on": "enable_cost_visibility",
+   "description": "Falls back down the chain (landed, received, ordered, quoted, then item last purchase rate) when the chosen field is empty."
+  },
+  {
+   "fieldname": "cb_vis",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "cost_visibility_overwrite",
+   "label": "Overwrite Existing Values",
+   "fieldtype": "Check",
+   "default": "1",
+   "depends_on": "enable_cost_visibility",
+   "description": "Off preserves a rate a user has already set on the row."
+  },
+  {
+   "fieldname": "show_margin_on_sales_rows",
+   "label": "Show Unit Margin and Margin Percent",
+   "fieldtype": "Check",
+   "default": "1",
+   "depends_on": "enable_cost_visibility"
+  },
+  {
+   "fieldname": "vis_fields_section",
+   "label": "Additional Fields To Copy",
+   "fieldtype": "Section Break",
+   "collapsible": 1,
+   "description": "Pick any field from Order Cost Peg and the row it should land on. Target custom fields are created automatically on migrate."
+  },
+  {
+   "fieldname": "cost_visibility_fields",
+   "label": "Fields",
+   "fieldtype": "Table",
+   "options": "Cost Visibility Field",
+   "depends_on": "enable_cost_visibility"
+  },
+  {
+   "fieldname": "consol_section",
+   "label": "Consolidated Procurement",
+   "fieldtype": "Section Break",
+   "description": "Aggregate open demand across many sales orders and material requests into one bulk purchase order per brand. Larger quantity is what earns the vendor discount."
+  },
+  {
+   "fieldname": "enable_consolidation",
+   "label": "Enable Consolidation",
+   "fieldtype": "Check",
+   "default": "0"
+  },
+  {
+   "fieldname": "consolidation_group_by",
+   "label": "Consolidate By",
+   "fieldtype": "Select",
+   "options": "Brand\nBrand and Supplier\nItem Group\nSupplier",
+   "default": "Brand",
+   "depends_on": "enable_consolidation"
+  },
+  {
+   "fieldname": "allocation_method",
+   "label": "Allocate Receipts By",
+   "fieldtype": "Select",
+   "options": "Earliest Required Date\nEarliest Order Date\nPro Rata\nLargest Order First",
+   "default": "Earliest Required Date",
+   "depends_on": "enable_consolidation",
+   "description": "How a consolidated receipt is shared out across the sales orders it serves."
+  },
+  {
+   "fieldname": "cb_consol",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "batch_identity",
+   "label": "Batch Identity When Consolidated",
+   "fieldtype": "Select",
+   "options": "Per Purchase Order\nPer Sales Order\nPer Receipt Line",
+   "default": "Per Purchase Order",
+   "depends_on": "enable_consolidation",
+   "description": "A consolidated batch serves several sales orders, so a sales order number in the batch ID would be misleading. Per Purchase Order is correct here."
+  },
+  {
+   "fieldname": "block_partial_allocation",
+   "label": "Block Delivery Beyond Allocation",
+   "fieldtype": "Check",
+   "default": "1",
+   "depends_on": "enable_consolidation",
+   "description": "Stops one sales order consuming another order's share of a shared batch."
+  },
+  {
+   "fieldname": "policy_section",
+   "label": "Procurement Document Policy",
+   "fieldtype": "Section Break",
+   "description": "Decides whether a demand group goes straight to a purchase order or must be quoted first. Rows are evaluated by priority, first match wins."
+  },
+  {
+   "fieldname": "enable_procurement_policy",
+   "label": "Enable Policy",
+   "fieldtype": "Check",
+   "default": "0"
+  },
+  {
+   "fieldname": "default_procurement_path",
+   "label": "Default Path",
+   "fieldtype": "Select",
+   "options": "Direct Purchase Order\nSupplier Quotation then Purchase Order\nRequest for Quotation then Purchase Order",
+   "default": "Direct Purchase Order",
+   "depends_on": "enable_procurement_policy"
+  },
+  {
+   "fieldname": "cb_policy",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "enforce_procurement_policy",
+   "label": "Enforce",
+   "fieldtype": "Check",
+   "default": "0",
+   "depends_on": "enable_procurement_policy",
+   "description": "Off means the policy advises but does not block. Start here during rollout."
+  },
+  {
+   "fieldname": "procurement_policies",
+   "label": "Policies",
+   "fieldtype": "Table",
+   "options": "Procurement Policy",
+   "depends_on": "enable_procurement_policy"
+  },
+  {
+   "fieldname": "addon_section",
+   "label": "Invoice Add-on Items",
+   "fieldtype": "Section Break",
+   "description": "Items added at delivery or invoice time that were not on the Sales Order, such as a RAM or SSD upgrade."
+  },
+  {
+   "fieldname": "enable_addon_handling",
+   "label": "Enable Add-on Handling",
+   "fieldtype": "Check",
+   "default": "0"
+  },
+  {
+   "fieldname": "addon_item_groups",
+   "label": "Add-on Item Groups",
+   "fieldtype": "Small Text",
+   "depends_on": "enable_addon_handling",
+   "description": "Comma separated. Leave blank to treat any unmatched line as an add-on."
+  },
+  {
+   "fieldname": "cb_addon",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "addon_costing",
+   "label": "Add-on Costing",
+   "fieldtype": "Select",
+   "options": "Default Valuation\nOwn Peg If Available\nAttribute to Parent Sales Order Line",
+   "default": "Own Peg If Available",
+   "depends_on": "enable_addon_handling"
+  },
+  {
+   "fieldname": "addon_attribution",
+   "label": "Report Attribution",
+   "fieldtype": "Select",
+   "options": "Show as Separate Line\nRoll Up Into Parent Item",
+   "default": "Show as Separate Line",
+   "depends_on": "enable_addon_handling"
+  },
+  {
+   "fieldname": "variance_section",
+   "label": "Cost Variance Posting",
+   "fieldtype": "Section Break",
+   "description": "Only used in Pegged PO Rate mode. Stock posts at real valuation, and the difference to the pegged rate is journalised so the ledger stays reconcilable."
+  },
+  {
+   "fieldname": "post_cost_variance",
+   "label": "Post Cost Variance Journal",
+   "fieldtype": "Check",
+   "default": "0",
+   "depends_on": "eval:doc.costing_mode=='Pegged PO Rate'"
+  },
+  {
+   "fieldname": "cost_variance_account",
+   "label": "Cost Variance Account",
+   "fieldtype": "Link",
+   "options": "Account",
+   "depends_on": "post_cost_variance",
+   "mandatory_depends_on": "post_cost_variance"
+  },
+  {
+   "fieldname": "cb_var",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "variance_cost_center",
+   "label": "Cost Center",
+   "fieldtype": "Link",
+   "options": "Cost Center",
+   "depends_on": "post_cost_variance"
+  },
+  {
+   "fieldname": "spec_section",
+   "label": "Part Numbers and Specifications",
+   "fieldtype": "Section Break",
+   "description": "A part number is an Item. Its specification is structured, bilingual and printable."
+  },
+  {
+   "fieldname": "enable_specifications",
+   "label": "Enable Specifications",
+   "fieldtype": "Check",
+   "default": "0"
+  },
+  {
+   "fieldname": "spec_language",
+   "label": "Spec Print Language",
+   "fieldtype": "Select",
+   "options": "English\nArabic\nBilingual",
+   "default": "Bilingual",
+   "depends_on": "enable_specifications"
+  },
+  {
+   "fieldname": "show_key_specs_on_invoice",
+   "label": "Show Key Specs on Invoice Line",
+   "fieldtype": "Check",
+   "default": "0",
+   "depends_on": "enable_specifications",
+   "description": "Keep this off for ZATCA. Full specs belong on the annexure, not the invoice line description."
+  },
+  {
+   "fieldname": "cb_spec",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "enforce_spec_template",
+   "label": "Enforce Template on Item Save",
+   "fieldtype": "Check",
+   "default": "0",
+   "depends_on": "enable_specifications"
+  },
+  {
+   "fieldname": "enable_as_built_configuration",
+   "label": "Generate As-Built Configuration",
+   "fieldtype": "Check",
+   "default": "0",
+   "depends_on": "enable_specifications",
+   "description": "Recomputes the delivered specification from add-on lines on the same document."
+  },
+  {
+   "fieldname": "supplier_resolution",
+   "label": "Supplier Resolution Order",
+   "fieldtype": "Select",
+   "options": "Item Supplier then Item Default\nItem Default then Item Supplier",
+   "default": "Item Supplier then Item Default",
+   "description": "Different part numbers of the same brand often come from different distributors."
+  },
+  {
+   "fieldname": "subst_section",
+   "label": "Part Substitution",
+   "fieldtype": "Section Break",
+   "description": "Handles a manufacturer shipping a superseded part number against an open purchase order."
+  },
+  {
+   "fieldname": "allow_superseded_substitution",
+   "label": "Substitution Handling",
+   "fieldtype": "Select",
+   "options": "Prompt\nAutomatic\nForbidden",
+   "default": "Prompt"
+  },
+  {
+   "fieldname": "cb_subst",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "log_substitutions",
+   "label": "Create Substitution Log",
+   "fieldtype": "Check",
+   "default": "1",
+   "depends_on": "eval:doc.allow_superseded_substitution!='Forbidden'"
+  },
+  {
+   "fieldname": "report_section",
+   "label": "Reporting",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "default_report_profile",
+   "label": "Default Report Profile",
+   "fieldtype": "Link",
+   "options": "Profitability Report Profile"
+  },
+  {
+   "fieldname": "cb_rep",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "include_draft_documents",
+   "label": "Include Draft Documents in Report",
+   "fieldtype": "Check",
+   "default": "0"
+  },
+  {
+   "fieldname": "cleanup_section",
+   "label": "Maintenance and Cleanup",
+   "fieldtype": "Section Break",
+   "description": "One-click teardown of a full order cycle for UAT. It cancels and deletes submitted accounting and stock documents. Keep the toggle off on production."
+  },
+  {
+   "fieldname": "allow_destructive_cleanup",
+   "label": "Allow Destructive Cleanup",
+   "fieldtype": "Check",
+   "default": "0",
+   "description": "Switch on only while tearing down test data, then switch off again."
+  },
+  {
+   "fieldname": "cb_clean",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "cleanup_warning",
+   "label": "",
+   "fieldtype": "HTML",
+   "options": "<div style='padding:8px;border-left:3px solid #A32D2D;background:#FBF0F0'><b>Irreversible.</b> Cancelled and deleted documents cannot be restored. Always run Preview first and take a backup before running on any site that holds real data.</div>",
+   "depends_on": "allow_destructive_cleanup"
+  },
+  {
+   "fieldname": "scope_section",
+   "label": "Applicability",
+   "fieldtype": "Section Break",
+   "description": "Leave empty to apply the global mode everywhere. Add rows to run order-wise costing for some companies, item groups or brands only."
+  },
+  {
+   "fieldname": "applicability",
+   "label": "Applicability",
+   "fieldtype": "Table",
+   "options": "Order Costing Applicability"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-08-04 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Neotec Order Costing",
+ "name": "Order Costing Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "share": 1,
+   "print": 1,
+   "email": 1
+  },
+  {
+   "role": "Stock Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1
+  },
+  {
+   "role": "Accounts Manager",
+   "read": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1
+  },
+  {
+   "role": "Sales Manager",
+   "read": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "issingle": 1
+}

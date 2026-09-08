@@ -1,0 +1,86 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-08-04 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "source_document",
+  "fieldname",
+  "label",
+  "fieldtype",
+  "options",
+  "width",
+  "is_visible"
+ ],
+ "fields": [
+  {
+   "fieldname": "source_document",
+   "label": "Source Document",
+   "fieldtype": "Select",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 2,
+   "options": "Sales Invoice\nSales Invoice Item\nSales Order\nSales Order Item\nDelivery Note\nDelivery Note Item\nPurchase Order\nPurchase Order Item\nPurchase Receipt\nPurchase Invoice\nOrder Cost Peg\nBatch\nItem\nCustomer\nSupplier\nComputed"
+  },
+  {
+   "fieldname": "fieldname",
+   "label": "Field",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "label",
+   "label": "Column Label",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "fieldtype",
+   "label": "Column Type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "columns": 2,
+   "options": "Data\nLink\nCurrency\nFloat\nInt\nDate\nDatetime\nPercent\nCheck\nSmall Text",
+   "default": "Data"
+  },
+  {
+   "fieldname": "options",
+   "label": "Link To",
+   "fieldtype": "Data",
+   "columns": 1
+  },
+  {
+   "fieldname": "width",
+   "label": "Width",
+   "fieldtype": "Int",
+   "default": "120",
+   "columns": 1
+  },
+  {
+   "fieldname": "is_visible",
+   "label": "Show",
+   "fieldtype": "Check",
+   "default": "1",
+   "in_list_view": 1,
+   "columns": 1
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-08-04 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Neotec Order Costing",
+ "name": "Profitability Report Field",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "istable": 1,
+ "editable_grid": 1
+}

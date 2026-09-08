@@ -1,0 +1,525 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-08-04 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "company",
+  "item_code",
+  "item_name",
+  "brand",
+  "cb1",
+  "status",
+  "uom",
+  "stock_uom",
+  "demand_section",
+  "sales_order",
+  "sales_order_item",
+  "customer",
+  "cb2",
+  "sales_person",
+  "transaction_date",
+  "qty_pegged",
+  "selling_rate",
+  "supply_section",
+  "material_request",
+  "purchase_order",
+  "purchase_order_item",
+  "supplier",
+  "cb3",
+  "stock_document_type",
+  "stock_document",
+  "batch_no",
+  "qty_received",
+  "part_section",
+  "manufacturer_part_no",
+  "supplier_part_no",
+  "cb_part",
+  "substituted_from_item",
+  "substitution_log",
+  "consolidation_section",
+  "is_consolidated",
+  "procurement_consolidation",
+  "qty_allocated",
+  "cb_con",
+  "procurement_document_type",
+  "procurement_document",
+  "quoted_rate",
+  "expected_margin",
+  "cost_section",
+  "purchase_rate",
+  "received_rate",
+  "landed_rate",
+  "cb4",
+  "effective_cost_rate",
+  "costing_mode_applied",
+  "delivery_section",
+  "qty_delivered",
+  "qty_open",
+  "deliveries",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "label": "Series",
+   "fieldtype": "Select",
+   "options": "NOC-PEG-.YYYY.-",
+   "default": "NOC-PEG-.YYYY.-",
+   "reqd": 1
+  },
+  {
+   "fieldname": "company",
+   "label": "Company",
+   "fieldtype": "Link",
+   "options": "Company",
+   "reqd": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "item_code",
+   "label": "Item",
+   "fieldtype": "Link",
+   "options": "Item",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "item_name",
+   "label": "Item Name",
+   "fieldtype": "Data",
+   "fetch_from": "item_code.item_name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "brand",
+   "label": "Brand",
+   "fieldtype": "Link",
+   "options": "Brand",
+   "read_only": 1,
+   "in_standard_filter": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "cb1",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "label": "Status",
+   "fieldtype": "Select",
+   "options": "Draft\nOpen\nQuoting\nQuoted\nOrdered\nReceived\nPartially Delivered\nClosed\nCancelled",
+   "default": "Draft",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "uom",
+   "label": "UOM",
+   "fieldtype": "Link",
+   "options": "UOM",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "stock_uom",
+   "label": "Stock UOM",
+   "fieldtype": "Link",
+   "options": "UOM",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "demand_section",
+   "label": "Demand Side",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "sales_order",
+   "label": "Sales Order",
+   "fieldtype": "Link",
+   "options": "Sales Order",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "sales_order_item",
+   "label": "Sales Order Row",
+   "fieldtype": "Data",
+   "read_only": 1
+  },
+  {
+   "fieldname": "customer",
+   "label": "Customer",
+   "fieldtype": "Link",
+   "options": "Customer",
+   "read_only": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "cb2",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "sales_person",
+   "label": "Sales Person",
+   "fieldtype": "Link",
+   "options": "Sales Person",
+   "read_only": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "transaction_date",
+   "label": "Order Date",
+   "fieldtype": "Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "qty_pegged",
+   "label": "Qty Pegged",
+   "fieldtype": "Float",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "selling_rate",
+   "label": "Selling Rate",
+   "fieldtype": "Currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "supply_section",
+   "label": "Supply Side",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "material_request",
+   "label": "Material Request",
+   "fieldtype": "Link",
+   "options": "Material Request",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "purchase_order",
+   "label": "Purchase Order",
+   "fieldtype": "Link",
+   "options": "Purchase Order",
+   "read_only": 1,
+   "in_standard_filter": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "purchase_order_item",
+   "label": "Purchase Order Row",
+   "fieldtype": "Data",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "supplier",
+   "label": "Supplier",
+   "fieldtype": "Link",
+   "options": "Supplier",
+   "read_only": 1,
+   "in_standard_filter": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "cb3",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "stock_document_type",
+   "label": "Inward Document Type",
+   "fieldtype": "Select",
+   "options": "\nPurchase Receipt\nPurchase Invoice",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "stock_document",
+   "label": "Inward Document",
+   "fieldtype": "Dynamic Link",
+   "options": "stock_document_type",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "batch_no",
+   "label": "Batch",
+   "fieldtype": "Link",
+   "options": "Batch",
+   "read_only": 1,
+   "in_list_view": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "qty_received",
+   "label": "Qty Received",
+   "fieldtype": "Float",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "part_section",
+   "label": "Part Number Identity",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "manufacturer_part_no",
+   "label": "Manufacturer Part No",
+   "fieldtype": "Data",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "supplier_part_no",
+   "label": "Supplier Part No",
+   "fieldtype": "Data",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "cb_part",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "substituted_from_item",
+   "label": "Substituted From",
+   "fieldtype": "Link",
+   "options": "Item",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "substitution_log",
+   "label": "Substitution Log",
+   "fieldtype": "Link",
+   "options": "Part Substitution Log",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "consolidation_section",
+   "label": "Consolidation",
+   "fieldtype": "Section Break",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "is_consolidated",
+   "label": "Consolidated Purchase",
+   "fieldtype": "Check",
+   "read_only": 1,
+   "allow_on_submit": 1,
+   "description": "This peg shares its purchase order line and batch with other sales orders."
+  },
+  {
+   "fieldname": "procurement_consolidation",
+   "label": "Procurement Consolidation",
+   "fieldtype": "Link",
+   "options": "Procurement Consolidation",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "qty_allocated",
+   "label": "Qty Allocated",
+   "fieldtype": "Float",
+   "read_only": 1,
+   "allow_on_submit": 1,
+   "description": "This order's share of the consolidated purchase order line."
+  },
+  {
+   "fieldname": "cb_con",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "procurement_document_type",
+   "label": "Quotation Document Type",
+   "fieldtype": "Select",
+   "options": "\nRequest for Quotation\nSupplier Quotation",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "procurement_document",
+   "label": "Quotation Document",
+   "fieldtype": "Dynamic Link",
+   "options": "procurement_document_type",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "quoted_rate",
+   "label": "Quoted Rate",
+   "fieldtype": "Currency",
+   "read_only": 1,
+   "allow_on_submit": 1,
+   "description": "Expected cost before the purchase order is raised."
+  },
+  {
+   "fieldname": "expected_margin",
+   "label": "Expected Unit Margin",
+   "fieldtype": "Currency",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "cost_section",
+   "label": "Costing",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "purchase_rate",
+   "label": "Purchase Order Rate",
+   "fieldtype": "Currency",
+   "read_only": 1,
+   "in_list_view": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "received_rate",
+   "label": "Received Rate",
+   "fieldtype": "Currency",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "landed_rate",
+   "label": "Landed Rate",
+   "fieldtype": "Currency",
+   "read_only": 1,
+   "description": "Purchase rate plus any Landed Cost Voucher allocation.",
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "cb4",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "effective_cost_rate",
+   "label": "Effective Cost Rate",
+   "fieldtype": "Currency",
+   "read_only": 1,
+   "bold": 1,
+   "description": "The rate the Delivery Note will use for COGS.",
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "costing_mode_applied",
+   "label": "Costing Mode Applied",
+   "fieldtype": "Select",
+   "options": "\nPegged Batch Valuation\nPegged PO Rate\nDefault Valuation",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "delivery_section",
+   "label": "Delivery Consumption",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "qty_delivered",
+   "label": "Qty Delivered",
+   "fieldtype": "Float",
+   "read_only": 1,
+   "in_list_view": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "qty_open",
+   "label": "Qty Open",
+   "fieldtype": "Float",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "deliveries",
+   "label": "Deliveries",
+   "fieldtype": "Table",
+   "options": "Order Cost Peg Delivery",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "label": "Amended From",
+   "fieldtype": "Link",
+   "options": "Order Cost Peg",
+   "read_only": 1,
+   "no_copy": 1,
+   "print_hide": 1
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-08-04 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Neotec Order Costing",
+ "name": "Order Cost Peg",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "share": 1,
+   "print": 1,
+   "email": 1
+  },
+  {
+   "role": "Stock Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1
+  },
+  {
+   "role": "Accounts Manager",
+   "read": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1
+  },
+  {
+   "role": "Sales Manager",
+   "read": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "is_submittable": 1,
+ "autoname": "naming_series:",
+ "title_field": "item_code",
+ "search_fields": "sales_order,purchase_order,item_code,batch_no"
+}

@@ -1,0 +1,264 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-08-10 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "company",
+  "consolidation_date",
+  "cb1",
+  "status",
+  "group_by",
+  "filter_section",
+  "brand",
+  "item_group",
+  "supplier",
+  "cb2",
+  "from_date",
+  "to_date",
+  "warehouse",
+  "include_unlinked_requests",
+  "items_section",
+  "items",
+  "summary_section",
+  "summary",
+  "total_qty",
+  "cb3",
+  "total_orders",
+  "total_expected_saving",
+  "result_section",
+  "created_documents",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "label": "Series",
+   "fieldtype": "Select",
+   "options": "NOC-CON-.YYYY.-",
+   "default": "NOC-CON-.YYYY.-"
+  },
+  {
+   "fieldname": "company",
+   "label": "Company",
+   "fieldtype": "Link",
+   "options": "Company",
+   "reqd": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "consolidation_date",
+   "label": "Date",
+   "fieldtype": "Date",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "cb1",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "label": "Status",
+   "fieldtype": "Select",
+   "options": "Draft\nDemand Fetched\nOrdered\nCancelled",
+   "default": "Draft",
+   "read_only": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "group_by",
+   "label": "Consolidate By",
+   "fieldtype": "Select",
+   "options": "Brand\nBrand and Supplier\nItem Group\nSupplier",
+   "default": "Brand",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "filter_section",
+   "label": "Demand Filters",
+   "fieldtype": "Section Break",
+   "description": "Pulls open Material Request lines that are still awaiting a purchase order."
+  },
+  {
+   "fieldname": "brand",
+   "label": "Brand",
+   "fieldtype": "Link",
+   "options": "Brand",
+   "in_standard_filter": 1,
+   "description": "Leave blank to pull every brand and split on creation."
+  },
+  {
+   "fieldname": "item_group",
+   "label": "Item Group",
+   "fieldtype": "Link",
+   "options": "Item Group"
+  },
+  {
+   "fieldname": "supplier",
+   "label": "Preferred Supplier",
+   "fieldtype": "Link",
+   "options": "Supplier"
+  },
+  {
+   "fieldname": "cb2",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "from_date",
+   "label": "Required From",
+   "fieldtype": "Date"
+  },
+  {
+   "fieldname": "to_date",
+   "label": "Required To",
+   "fieldtype": "Date"
+  },
+  {
+   "fieldname": "warehouse",
+   "label": "Warehouse",
+   "fieldtype": "Link",
+   "options": "Warehouse"
+  },
+  {
+   "fieldname": "include_unlinked_requests",
+   "label": "Include Requests With No Sales Order",
+   "fieldtype": "Check",
+   "default": "0",
+   "description": "Stock replenishment lines that carry no customer demand."
+  },
+  {
+   "fieldname": "items_section",
+   "label": "Demand Lines",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "items",
+   "label": "Demand",
+   "fieldtype": "Table",
+   "options": "Procurement Consolidation Item"
+  },
+  {
+   "fieldname": "summary_section",
+   "label": "Consolidated Totals",
+   "fieldtype": "Section Break",
+   "description": "One purchase order will be created per row group. Bulk quantity is what earns the vendor discount."
+  },
+  {
+   "fieldname": "summary",
+   "label": "Summary",
+   "fieldtype": "Table",
+   "options": "Procurement Consolidation Summary"
+  },
+  {
+   "fieldname": "total_qty",
+   "label": "Total Qty",
+   "fieldtype": "Float",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb3",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_orders",
+   "label": "Sales Orders Covered",
+   "fieldtype": "Int",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_expected_saving",
+   "label": "Expected Saving",
+   "fieldtype": "Currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "result_section",
+   "label": "Created Documents",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "created_documents",
+   "label": "Created Documents",
+   "fieldtype": "Small Text",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "label": "Amended From",
+   "fieldtype": "Link",
+   "options": "Procurement Consolidation",
+   "read_only": 1,
+   "no_copy": 1,
+   "print_hide": 1
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-08-10 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Neotec Order Costing",
+ "name": "Procurement Consolidation",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "share": 1,
+   "print": 1,
+   "email": 1
+  },
+  {
+   "role": "Purchase Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1
+  },
+  {
+   "role": "Purchase User",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1
+  },
+  {
+   "role": "Stock Manager",
+   "read": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "is_submittable": 1,
+ "autoname": "naming_series:",
+ "title_field": "brand",
+ "search_fields": "brand,company,status"
+}

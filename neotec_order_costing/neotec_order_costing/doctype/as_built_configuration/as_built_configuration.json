@@ -1,0 +1,248 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-08-05 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "base_item",
+  "item_name",
+  "brand",
+  "manufacturer_part_no",
+  "cb1",
+  "delivery_document_type",
+  "delivery_document",
+  "delivery_detail",
+  "customer",
+  "posting_date",
+  "stock_section",
+  "qty",
+  "batch_no",
+  "cb2",
+  "serial_no",
+  "order_cost_peg",
+  "spec_section",
+  "specifications",
+  "mod_section",
+  "modifications",
+  "render_section",
+  "spec_html"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "label": "Series",
+   "fieldtype": "Select",
+   "options": "NOC-ABC-.YYYY.-",
+   "default": "NOC-ABC-.YYYY.-"
+  },
+  {
+   "fieldname": "base_item",
+   "label": "Part Number",
+   "fieldtype": "Link",
+   "options": "Item",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "item_name",
+   "label": "Description",
+   "fieldtype": "Data",
+   "fetch_from": "base_item.item_name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "brand",
+   "label": "Brand",
+   "fieldtype": "Link",
+   "options": "Brand",
+   "read_only": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "manufacturer_part_no",
+   "label": "Manufacturer Part No",
+   "fieldtype": "Data",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb1",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "delivery_document_type",
+   "label": "Document Type",
+   "fieldtype": "Select",
+   "options": "Delivery Note\nSales Invoice",
+   "reqd": 1
+  },
+  {
+   "fieldname": "delivery_document",
+   "label": "Document",
+   "fieldtype": "Dynamic Link",
+   "options": "delivery_document_type",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "delivery_detail",
+   "label": "Row Name",
+   "fieldtype": "Data",
+   "read_only": 1
+  },
+  {
+   "fieldname": "customer",
+   "label": "Customer",
+   "fieldtype": "Link",
+   "options": "Customer",
+   "read_only": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "posting_date",
+   "label": "Delivery Date",
+   "fieldtype": "Date",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "stock_section",
+   "label": "Stock Identity",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "qty",
+   "label": "Qty",
+   "fieldtype": "Float",
+   "read_only": 1
+  },
+  {
+   "fieldname": "batch_no",
+   "label": "Batch",
+   "fieldtype": "Link",
+   "options": "Batch",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb2",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "serial_no",
+   "label": "Serial Numbers",
+   "fieldtype": "Small Text",
+   "read_only": 1
+  },
+  {
+   "fieldname": "order_cost_peg",
+   "label": "Order Cost Peg",
+   "fieldtype": "Link",
+   "options": "Order Cost Peg",
+   "read_only": 1
+  },
+  {
+   "fieldname": "spec_section",
+   "label": "Delivered Specification",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "specifications",
+   "label": "Specifications",
+   "fieldtype": "Table",
+   "options": "As Built Specification"
+  },
+  {
+   "fieldname": "mod_section",
+   "label": "Modifications Applied",
+   "fieldtype": "Section Break",
+   "description": "Add-on lines on the same document that changed the delivered configuration."
+  },
+  {
+   "fieldname": "modifications",
+   "label": "Modifications",
+   "fieldtype": "Table",
+   "options": "As Built Modification"
+  },
+  {
+   "fieldname": "render_section",
+   "label": "Rendered Output",
+   "fieldtype": "Section Break",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "spec_html",
+   "label": "Specification Block",
+   "fieldtype": "Text Editor",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-08-05 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Neotec Order Costing",
+ "name": "As Built Configuration",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "share": 1,
+   "print": 1,
+   "email": 1
+  },
+  {
+   "role": "Stock Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1
+  },
+  {
+   "role": "Item Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1
+  },
+  {
+   "role": "Sales Manager",
+   "read": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1
+  },
+  {
+   "role": "Purchase Manager",
+   "read": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "autoname": "naming_series:",
+ "title_field": "base_item",
+ "search_fields": "base_item,delivery_document,customer"
+}

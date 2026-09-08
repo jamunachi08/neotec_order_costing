@@ -1,0 +1,70 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-08-04 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "component",
+  "static_value",
+  "max_length",
+  "counter_length",
+  "uppercase"
+ ],
+ "fields": [
+  {
+   "fieldname": "component",
+   "label": "Component",
+   "fieldtype": "Select",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 3,
+   "options": "Static Text\nItem Code\nItem Group\nBrand\nCustomer Part No\nSupplier Part No\nManufacturer Part No\nSupplier\nCustomer\nSales Order\nSales Order (last 4)\nPurchase Order\nPurchase Order (last 4)\nStock Document\nStock Document (last 4)\nSales Person\nPosting Date (YYYYMMDD)\nPosting Date (YYMM)\nPosting Date (DDMMYY)\nFiscal Year\nPurchase Rate\nSerial Counter"
+  },
+  {
+   "fieldname": "static_value",
+   "label": "Static Text",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "columns": 2,
+   "depends_on": "eval:doc.component=='Static Text'"
+  },
+  {
+   "fieldname": "max_length",
+   "label": "Truncate To",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "columns": 1,
+   "description": "0 = no truncation"
+  },
+  {
+   "fieldname": "counter_length",
+   "label": "Counter Digits",
+   "fieldtype": "Int",
+   "default": "3",
+   "columns": 1,
+   "depends_on": "eval:doc.component=='Serial Counter'"
+  },
+  {
+   "fieldname": "uppercase",
+   "label": "Uppercase",
+   "fieldtype": "Check",
+   "default": "1",
+   "columns": 1
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-08-04 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Neotec Order Costing",
+ "name": "Batch Naming Component",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "istable": 1,
+ "editable_grid": 1
+}
